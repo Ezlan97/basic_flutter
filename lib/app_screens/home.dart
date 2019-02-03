@@ -138,9 +138,7 @@ class UserButton extends StatelessWidget {
           ),
         elevation: 6.0,        
         color: Colors.white,
-        onPressed: () {
-          hello(context);
-        },
+        onPressed: () => hello(context)
       ),
     );
   }
@@ -156,8 +154,6 @@ void hello(BuildContext context) {
   //function return alert dialog
   showDialog(
     context: context,
-    builder: (BuildContext context) {
-      return alertDialog;
-    }
+    builder: (BuildContext context) => alertDialog
   );
 }

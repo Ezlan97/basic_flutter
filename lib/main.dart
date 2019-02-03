@@ -8,8 +8,14 @@ void main() {
     home: Scaffold(
       appBar: AppBar(title: Text('long list'),),
       body: getListView(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => debugPrint('clicked'),
+        child: Icon(Icons.add),
+        tooltip: 'Add more item to the list!',
+        ),
+      ),
     ),
-  ));
+  );
 }
 
 // Widget getListView() {
@@ -48,11 +54,23 @@ Widget getListView() {
         title: Text(listItems[index]),
         leading: Icon(Icons.ac_unit),
         onTap: () {
-          debugPrint('${listItems[index]} was tapped');
+          showSnackBar(context,listItems[index]);
         },
       );
     }
   );
 
   return listViews;
+}
+
+void showSnackBar(BuildContext context, String item) {
+  var snackBar = SnackBar(
+    content: Text('You have tapped on $item'),
+    action: SnackBarAction(
+      label: 'undo',
+      onPressed: () => debugPrint('undo deleted item'),
+    ),
+  );
+
+  Scaffold.of(context).showSnackBar(snackBar);
 }
